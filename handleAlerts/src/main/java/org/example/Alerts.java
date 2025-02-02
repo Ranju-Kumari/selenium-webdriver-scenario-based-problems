@@ -19,7 +19,23 @@ public class Alerts {
         Thread.sleep(2000);
         driver.switchTo().alert().accept();
 
+        //Handling alert window with OK and Cancel button
+        driver.findElement(By.cssSelector("[onclick=\"jsConfirm()\"]")).click();
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept(); // Close alert by clicking on OK button
+        driver.switchTo().alert().dismiss(); // Close alert by clicking on Cancel button
 
+        Thread.sleep(10000);
+
+        //Handling alert window with input box and capturing text from the alert
+        driver.findElement(By.cssSelector("[onclick=\"jsPrompt()\"]")).click();
+        Thread.sleep(2000);
+
+        Alert alertWindow = driver.switchTo().alert();
+        System.out.println("Alert text : "+alertWindow.getText());
+        alertWindow.sendKeys("Hello");
+        alertWindow.accept();
+        
         driver.close();
         }
 
